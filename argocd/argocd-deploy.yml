@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tm-demo-argo
+  namespace: argocd # The namespace where Argo CD is installed (often 'argocd')
+spec:
+  project: default # Assign the application to a specific Argo CD project
+  source:
+    repoURL: https://github.com/UnpredictablePrashant/argocdb13 # The Git repository URL
+    targetRevision: main # The branch, tag, or commit to track (e.g., 'HEAD', 'master', 'v1.2.3')
+    path: k8s # The path within the repository containing the Kubernetes manifests or Helm charts
+  destination:
+    server: https://kubernetes.default.svc # The target Kubernetes cluster API server URL
+    namespace: tm-demo-argo # The target namespace within the destination cluster
+  syncPolicy:
+    automated:
+      prune: true # Allows Argo CD to delete resources that are no longer in the Git repo
+      selfHeal: true # Allows Argo CD to automatically sync changes made in the cluster back to the desired state in Git
+    # Optionally, use the 'syncOptions' field for additional behavior (e.g., creating the target namespace automatically)
+    syncOptions:
+    - CreateNamespace=true
