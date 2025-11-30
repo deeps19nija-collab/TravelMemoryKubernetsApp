@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default # Assign the application to a specific Argo CD project
   source:
-    repoURL: https://github.com/UnpredictablePrashant/argocdb13 # The Git repository URL
+    repoURL: https://github.com/deeps19nija-collab/TravelMemoryKubernetsApp # The Git repository URL
     targetRevision: main # The branch, tag, or commit to track (e.g., 'HEAD', 'master', 'v1.2.3')
     path: k8s # The path within the repository containing the Kubernetes manifests or Helm charts
   destination:
